@@ -11,4 +11,5 @@ const registerUser = new Schema({
     nameShop:{type: String, required: true}
 });
 
+
 module.exports = mongoose.model('user', registerUser);
