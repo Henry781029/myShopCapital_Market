@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userRegister = require('../models/shopOperation')
 
+
 router.get('/', async (req, res) => {
     const register = await userRegister.find();
         res.json(register);
@@ -20,19 +21,19 @@ router.post('/', async (req, res) => {
     res.json({status:'register OK!!'});
     }); 
     
-router.post('/authenticate', async (req, res)=>{
+router.post('/login', async (req, res)=>{
     const {email, password} = req.body;
     await userRegister.findOne({email}, (err, register)=>{
         if(err){
-            res.json({status:'Error authenticate user'});
+            res.json({status:'Error login user'});
         }else if(!register){
             res.json({status:'User no Exist!'})
         }else{
             register.isCorrectPassword(password, (err, result)=>{
                 if(err){
-                    res.json({status:'Error Autheticated password'})
+                    res.json({status:'Error login password'})
                 }else if(result){
-                    res.json({status:'User Authenticated correct'})
+                    res.json({status:'User login correct'})
                 }else{
                     res.json({status:'User and password incorrect'})
                 }

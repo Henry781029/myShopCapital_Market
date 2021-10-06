@@ -15,8 +15,11 @@ app.set('port', process.env.PORT || 3000);
 app.use(morgan('dev'));
 app.use(express.json());
 
+
+
 //Routes
 app.use('/api/shop', require('./routes/shoproutes'));
+app.use('login', require('./routes/shoproutes'));
 
 
 //static files

@@ -31,7 +31,7 @@ registerUser.pre('save', function(next){
     }
 });
 
-registerUser.method.isCorrectPassword = function(userPassword, callback){
+registerUser.method.isCorrectPassword = function(password, callback){
     bcrypt.compare(password, this.password, function(err, same){
         if(err){
             callback(err);
