@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require ('path');
+const bcrypt = require('bcrypt');
 
 const {mongoose} = require('./database');
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 //Routes
 app.use('/api/shop', require('./routes/shoproutes'));
+
 
 //static files
 app.use(express.static(path.join(__dirname,  'public')));
