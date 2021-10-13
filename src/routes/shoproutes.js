@@ -27,10 +27,22 @@ router.post('/login', [body('email', 'Ingrese un email valido').isEmail().exists
                        body('password', 'password debe contener minimo 8 caracteres').isLength({min:8}).exists()], (req, res) =>{
     
     const errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+        res.status(400).json({errors: errors.array()});
+        console.log(errors)
+    }
     
     if(!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()});
+        console.log(req.body)
+        const valores = req.body
+        const validaciones = errors.array()
+        res.render({validaciones:validaciones, valores: valores});
+       
+    }else{
+        res.send({status:'Logeo Exitoso'});
     }
+
     
 });
     
